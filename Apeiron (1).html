@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apeiron</title>
+<meta name="description" content="Apeiron — Sonsuz bilik / Infinite knowledge">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{--bg:#F5F7F6;--card:#fff;--ink:#10201C;--mut:#4A5B56;--ac:#0F6B5C;--soft:#E3EEEA;--line:#C9D6D1;--dk:#10201C;--dkt:#F5F7F6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1715;--card:#14231F;--ink:#EAF1EE;--mut:#A9BAB4;--ac:#5CC4AE;--soft:#122A25;--line:#2A423B;--dk:#06100E;--dkt:#EAF1EE}}
+:root[data-theme="dark"]{--bg:#0D1715;--card:#14231F;--ink:#EAF1EE;--mut:#A9BAB4;--ac:#5CC4AE;--soft:#122A25;--line:#2A423B;--dk:#06100E;--dkt:#EAF1EE}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Source Sans 3',system-ui,sans-serif}
+h1,h2,h3,.logo{font-family:'Sora',system-ui,sans-serif;margin:0}
+a{color:var(--ac)}
+button{font:inherit;cursor:pointer}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:22px;background:none;border:0;color:var(--ink)}
+nav{display:flex;flex-wrap:wrap;gap:4px}
+nav button{background:none;border:0;color:var(--mut);padding:8px 12px;border-radius:8px;font-weight:600}
+nav button.on{background:var(--soft);color:var(--ac)}
+.lang{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.lang button{background:none;border:0;padding:7px 12px;color:var(--mut);font-weight:600}
+.lang button.on{background:var(--ac);color:#fff}
+main{max-width:1100px;margin:0 auto;padding:40px 20px 72px}
+.eyebrow{font-size:13px;letter-spacing:.12em;font-weight:600;color:var(--ac)}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.12;margin:12px 0 16px;max-width:780px}
+h2{font-size:clamp(24px,4vw,34px);margin:0 0 8px}
+.lead{color:var(--mut);max-width:640px;margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:24px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.card h3{font-size:19px;margin-bottom:8px}
+.card p{margin:0 0 10px;color:var(--mut)}
+.btn{display:inline-block;background:var(--ac);color:#fff;border:0;border-radius:8px;padding:11px 20px;font-weight:600;text-decoration:none}
+.btn.o{background:none;border:2px solid var(--ac);color:var(--ac);padding:9px 18px}
+.tag{display:inline-block;font-size:13px;font-weight:600;background:var(--soft);color:var(--ac);border-radius:6px;padding:2px 8px;margin-bottom:8px}
+.note{font-size:14px;color:var(--mut)}
+.band{background:var(--dk);color:var(--dkt);border-radius:14px;padding:28px;margin:28px 0}
+.band p{color:inherit;opacity:.85;margin:6px 0 0}
+select,input,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
+label{display:block;font-weight:600;margin:14px 0 6px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.bar2{height:8px;background:var(--soft);border-radius:4px;overflow:hidden;margin:8px 0}
+.bar2 i{display:block;height:100%;background:var(--ac)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.chips button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:7px 14px}
+.chips button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;min-height:220px;max-height:55vh;overflow-y:auto;margin-bottom:12px}
+.m{margin:0 0 12px;padding:10px 14px;border-radius:10px;white-space:pre-wrap}
+.m.u{background:var(--soft);margin-left:12%}
+.m.a{border:1px solid var(--line);margin-right:12%}
+ul{padding-left:20px;margin:6px 0}
+li{margin:4px 0}
+footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;font-size:14px;color:var(--mut)}
+.warn{border-left:4px solid var(--ac);background:var(--soft);padding:14px 18px;border-radius:8px;margin:20px 0}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<button class="logo" onclick="go('home')">Apeiron</button>
+<nav id="nav"></nav>
+<div class="lang"><button id="l-az" onclick="setLang('az')">AZ</button><button id="l-en" onclick="setLang('en')">EN</button></div>
+</div></header>
+<main id="app"></main>
+<footer id="foot"></footer>
+<script>
+var lang='az',view='home',field='',work='',country='de',purpose='work',chatLog=[],busy=false,sampleFn=null,joined={},plan=null;
+try{var sl=localStorage.getItem('apeiron-lang');if(sl==='en'||sl==='az')lang=sl}catch(e){}
+var U={
+az:{nav:{home:'Ana səhifə',science:'Elm',art:'Sənət',migration:'Köç',support:'Dəstək',assistant:'AI köməkçi'},
+tag:'Sonsuz bilik',h:'Dünyanın biliyi, sənin dilində',hd:'Elm və sənətin böyük əsərləri, köç üçün addım-addım yol xəritəsi, şəxsi dəstək və hər mövzuda AI köməkçi.',
+explore:'Kəşf et',
+sciD:'Kitablar, ideyalar və onları yaradan insanlar.',artD:'Əsərlərin arxasındakı hekayələr.',migD:'Ölkəni seç, məqsədini müəyyən et, yol xəritəni qur.',supD:'Sənin tempində, sənin yolunla.',
+fields:'Sahələr',all:'Hamısı',back:'Geri',topic:'Mövzu',story:'Tarixi hekayə',tr:'Azərbaycanca tərcümə hazırlanır',buy:'Orijinalı al',aff:'Bu link vasitəsilə alış etsəniz, Apeiron kiçik komissiya qazanır.',
+vid:'Qısa tanışlıq videosu hazırlanır',meet:'Görüşlər',reserve:'Yerimi ayır',reserved:'Yer ayrıldı',of:'nəfərdən',min:'minimum',price:'Bilet',sample:'Nümunə görüş. Minimuma çatanda müəllif ilə əlaqə saxlanılır və tarix təyin olunur; gəlir müəllif və Apeiron arasında bölünür. Ödəniş hələ aktiv deyil.',
+by:'Müəllif',artist:'Sənətçi',
+country:'Ölkə',purp:'Məqsəd',work_:'İş',study:'Təhsil',tour:'Turizm',earth:'Google Earth-də bax',maps:'Google Maps-də bax',off:'Rəsmi mənbə',req:'Tələblər',docs:'Sənədlər',steps:'Addımlar',iv:'Müsahibə sualı və cavab nümunəsi',
+verify:'Ümumi məlumatdır, hüquqi məsləhət deyil. Tələblər dəyişir; həmişə rəsmi mənbələri yoxlayın.',
+supH:'Apeiron Dəstək',supP:'Şəxsi yanaşma ilə hazırlanan plan. Məlumatlar yalnız bu səhifədə qalır və heç yerə göndərilmir.',
+age:'Yaş',edu:'Təhsil',edus:['Orta məktəb','Tələbə','Bakalavr','Magistr','Digər'],feel:'Bu gün özünü necə hiss edirsən?',feels:['Çətin dövrdəyəm','Nisbətən yaxşıyam','Özümü yaxşı hiss edirəm'],goal:'Maraq göstərdiyin sahə və ya məqsəd',make:'Planımı qur',
+planT:'Şəxsi planın',psy:'AI emosional dəstək',psyT:'Bu gün üçün ilk addım: AI emosional dəstək bələdçisi ilə danış, özünü dinlənilmiş hiss et.',
+learn:'Öyrənmə',learnT:'seçdiyin sahə üzrə həftəlik 20 dəqiqəlik oxu və 3 qeyd.',fam:'Ailə və münasibətlər',famT:'Yaxın biri ilə mühakimə etmədən söhbət et; AI ailə dəstəyi ilə hazırlaşa bilərsən.',car:'Karyera',carT:'Bir bacarıq seç və bu həftə üçün real məqsəd qoy.',
+safe:'Apeiron Dəstək həkimi, lisenziyalı terapevti və təcili yardımı əvəz etmir. Təhlükə varsa, dərhal yerli təcili yardım xidmətinə və etibar etdiyin şəxsə müraciət et.',
+co:'Şirkətlər üçün',coT:'Komanda üçün inkişaf proqramı: qiymətləndirmə, tapşırıqlar və irəliləyiş izləmə. Fərdi cavablar göstərilmir.',
+asH:'AI köməkçi',asP:'Elm, sənət və köç haqqında sual ver.',send:'Göndər',ph:'Sualını yaz…',nai:'AI köməkçi bu mühitdə əlçatan deyil.',err:'Cavab alınmadı. Bir az sonra yenidən cəhd et.',
+sug:['Təkamül nəzəriyyəsini sadə izah et','Almaniyada təhsil üçün nələri yoxlamalıyam?','Van Qoqun rəngləri haqqında danış'],
+aiNote:'AI səhv edə bilər. Hüquqi, tibbi və ya terapiya məsləhəti deyil.',foot:'Apeiron · Sonsuz bilik'},
+en:{nav:{home:'Home',science:'Science',art:'Art',migration:'Migration',support:'Support',assistant:'AI Assistant'},
+tag:'Infinite knowledge',h:'The world’s knowledge, in your language',hd:'Great works of science and art, a step-by-step path for moving abroad, personal support and an AI assistant for any topic.',
+explore:'Explore',
+sciD:'Books, ideas and the people behind them.',artD:'The stories behind the works.',migD:'Choose a country, define your purpose, build your roadmap.',supD:'At your pace, on your terms.',
+fields:'Fields',all:'All',back:'Back',topic:'Topic',story:'Historical story',tr:'Azerbaijani translation in preparation',buy:'Buy the original',aff:'If you buy through this link, Apeiron earns a small commission.',
+vid:'Short introduction video in preparation',meet:'Meetings',reserve:'Reserve my spot',reserved:'Spot reserved',of:'of',min:'minimum',price:'Ticket',sample:'Sample meeting. Once the minimum is reached, the author is contacted and a date is set; revenue is shared between the author and Apeiron. Payment is not active yet.',
+by:'Author',artist:'Artist',
+country:'Country',purp:'Purpose',work_:'Work',study:'Study',tour:'Tourism',earth:'View in Google Earth',maps:'View in Google Maps',off:'Official source',req:'Requirements',docs:'Documents',steps:'Steps',iv:'Interview question and sample answer',
+verify:'General information, not legal advice. Requirements change; always verify on official sources.',
+supH:'Apeiron Support',supP:'A plan built with a person-centred approach. Your answers stay on this page and are not sent anywhere.',
+age:'Age',edu:'Education',edus:['High school','Student','Bachelor’s','Master’s','Other'],feel:'How are you feeling today?',feels:['I’m having a difficult time','I’m doing okay','I’m feeling good'],goal:'A field or goal you care about',make:'Create my plan',
+planT:'Your personal plan',psy:'AI emotional support',psyT:'First step for today: talk with the AI emotional support guide and take the time to feel heard.',
+learn:'Learning',learnT:'20 minutes of reading a week in your chosen field, and 3 notes.',fam:'Family & relationships',famT:'Have a conversation with someone close without judgement; the AI family guide can help you prepare.',car:'Career',carT:'Choose one skill and set a realistic goal for this week.',
+safe:'Apeiron Support does not replace a doctor, licensed therapist or emergency services. If you are in danger, contact local emergency services and someone you trust right away.',
+co:'For companies',coT:'A development programme for your team: assessment, tasks and progress tracking. Individual responses are never shown.',
+asH:'AI Assistant',asP:'Ask about science, art or moving abroad.',send:'Send',ph:'Write your question…',nai:'The AI assistant is not available in this environment.',err:'No answer received. Please try again shortly.',
+sug:['Explain evolution in simple terms','What should I check for studying in Germany?','Tell me about Van Gogh’s use of colour'],
+aiNote:'AI can make mistakes. Not legal, medical or therapy advice.',foot:'Apeiron · Infinite knowledge'}};
+var F={science:[
+{id:'phys',n:{az:'Fizika',en:'Physics'}},{id:'bio',n:{az:'Biologiya',en:'Biology'}},{id:'psy',n:{az:'Psixologiya',en:'Psychology'}}],
+art:[{id:'lit',n:{az:'Ədəbiyyat',en:'Literature'}},{id:'pnt',n:{az:'Rəssamlıq',en:'Painting'}},{id:'mus',n:{az:'Musiqi',en:'Music'}}]};
+var W=[
+{id:'principia',s:'science',f:'phys',t:{az:'Təbiət fəlsəfəsinin riyazi əsasları',en:'Mathematical Principles of Natural Philosophy'},a:'Isaac Newton',y:'1687',
+tp:{az:'Hərəkət qanunları və ümumdünya cazibə qanununu riyazi dillə izah edən əsər.',en:'The work that states the laws of motion and universal gravitation in mathematical form.'},
+st:{az:'Əsər astronom Edmond Halleyin təşviqi və maliyyə dəstəyi ilə nəşr olundu və elmi inqilabın zirvələrindən biri sayılır.',en:'It was published with the encouragement and financial help of astronomer Edmond Halley and is a peak of the scientific revolution.'},q:'Principia Mathematica Newton'},
+{id:'origin',s:'science',f:'bio',t:{az:'Növlərin mənşəyi',en:'On the Origin of Species'},a:'Charles Darwin',y:'1859',
+tp:{az:'Təbii seçmə yolu ilə təkamülü izah edir.',en:'Explains evolution by means of natural selection.'},
+st:{az:'Darvin ideyalarını illərlə toplayıb, yalnız başqa bir təbiətşünasın oxşar nəticələrə gəldiyini biləndən sonra nəşr etdi.',en:'Darwin gathered evidence for years and published after learning another naturalist had reached similar conclusions.'},q:'On the Origin of Species Darwin'},
+{id:'dreams',s:'science',f:'psy',t:{az:'Yuxuların təfsiri',en:'The Interpretation of Dreams'},a:'Sigmund Freud',y:'1899',
+tp:{az:'Yuxuların psixoloji mənası və şüuraltı nəzəriyyəsinin əsası.',en:'The psychological meaning of dreams and a foundation of the theory of the unconscious.'},
+st:{az:'Kitab ilk illərdə az satıldı, sonradan psixologiyada dönüş nöqtəsi oldu.',en:'The book sold slowly at first, then became a turning point in psychology.'},q:'Interpretation of Dreams Freud'},
+{id:'khamsa',s:'art',f:'lit',t:{az:'Xəmsə',en:'Khamsa (Quintet)'},a:'Nizami Gəncəvi',y:'12th c.',
+tp:{az:'Beş poemadan ibarət əsər: məhəbbət, hikmət və ədalət haqqında.',en:'Five poems on love, wisdom and justice.'},
+st:{az:'Nizami Gəncədə yaşayıb yaradıb; əsərləri Şərq ədəbiyyatına və miniatür sənətinə təsir göstərib.',en:'Nizami lived and wrote in Ganja; his poems shaped Eastern literature and miniature painting.'},q:'Nizami Ganjavi Khamsa'},
+{id:'night',s:'art',f:'pnt',t:{az:'Ulduzlu gecə',en:'The Starry Night'},a:'Vincent van Gogh',y:'1889',
+tp:{az:'Gecə səmasının duyğu dolu təsviri; fırça ştrixləri ilə hərəkət yaradılıb.',en:'An emotional view of the night sky, with brushwork that creates movement.'},
+st:{az:'Əsər Van Qoqun Sen-Remidəki sığınacaqda qaldığı dövrdə yaradılıb və bu gün Nyu-Yorkdakı MoMA-da saxlanılır.',en:'Painted while Van Gogh stayed at an asylum in Saint-Rémy; today it is held at MoMA in New York.'},q:'Starry Night Van Gogh'},
+{id:'arshin',s:'art',f:'mus',t:{az:'Arşın mal alan',en:'The Cloth Peddler (Arshin Mal Alan)'},a:'Üzeyir Hacıbəyli',y:'1913',
+tp:{az:'Şərqdə ilk musiqili komediya.',en:'The first musical comedy in the Muslim East.'},
+st:{az:'Əsər tez bir zamanda dünyanın bir çox dilinə tərcümə olundu və tamaşaya qoyuldu.',en:'It was soon translated and staged in many languages around the world.'},q:'Arshin Mal Alan Uzeyir Hajibeyov'}];
+var M=[{id:'m1',s:'science',t:{az:'Təkamül bu gün: bioloq ilə görüş',en:'Evolution today: meet a biologist'},p:15,min:20,n:14},
+{id:'m2',s:'art',t:{az:'Müasir Azərbaycan musiqisi: bəstəkar ilə söhbət',en:'Contemporary Azerbaijani music: a talk with a composer'},p:12,min:15,n:9}];
+var C=[{id:'de',n:{az:'Almaniya',en:'Germany'},earth:'Germany',w:'https://www.make-it-in-germany.com/',s:'https://www.daad.de/en/',
+cu:{az:'Sənaye, universitetlər və güclü tədris-təqaüd sistemi.',en:'Industry, strong universities and a wide scholarship system.'}},
+{id:'tr',n:{az:'Türkiyə',en:'Türkiye'},earth:'Turkey',w:'https://www.csgb.gov.tr/',s:'https://turkiyeburslari.gov.tr/',
+cu:{az:'Qədim tarix, zəngin mətbəx və Azərbaycanla yaxın dil və mədəniyyət.',en:'Ancient history, rich cuisine and a close language and culture link with Azerbaijan.'}},
+{id:'nl',n:{az:'Niderland',en:'Netherlands'},earth:'Netherlands',w:'https://ind.nl/en',s:'https://www.studyinholland.nl/',
+cu:{az:'Açıq cəmiyyət, ingilis dilində proqramlar və velosiped mədəniyyəti.',en:'An open society, English-taught programmes and a cycling culture.'}},
+{id:'ca',n:{az:'Kanada',en:'Canada'},earth:'Canada',w:'https://www.canada.ca/en/immigration-refugees-citizenship.html',s:'https://www.canada.ca/en/immigration-refugees-citizenship.html',
+cu:{az:'Çoxmədəniyyətli cəmiyyət, təbiət və immiqrasiya proqramları.',en:'A multicultural society, vast nature and immigration programmes.'}}];
+var P={work:{
+req:{az:['Etibarlı pasport','Tanınmış ixtisas və ya təcrübə','İş təklifi və ya iş axtarışı planı','Vəzifəyə uyğun dil səviyyəsi'],en:['Valid passport','Recognised qualifications or experience','A job offer or a job-search plan','Language level suited to the role']},
+doc:{az:['CV','Diplom və təsdiqlənmiş tərcümələr','İşəgötürən məktubu','Foto və ödəniş sübutları (tələb olunarsa)'],en:['CV','Diplomas and certified translations','Employer letter','Photos and fees where required']},
+stp:{az:['Rəsmi portalda tələb olunan peşələri araşdır','CV və motivasiya məktubunu hazırla','Müraciət et','Müsahibədən keç','Viza və ya icazə üçün rəsmi nümayəndəliyə müraciət et'],en:['Research in-demand roles on the official portal','Prepare your CV and cover letter','Apply','Go through interviews','Apply for the visa or permit via the official mission']},
+q:{az:['Niyə bu ölkədə işləmək istəyirsən?','Konkret sahəni, bacarıqlarını və uzunmüddətli planını de. Məsələn: “Sahəmdə təcrübəm var və bu ölkədə peşəkar inkişaf etmək, bacarıqlarımı real layihələrdə tətbiq etmək istəyirəm.”'],en:['Why do you want to work in this country?','Name your field, skills and long-term plan. For example: “I have experience in my field and want to grow professionally here by applying my skills to real projects.”']}},
+study:{
+req:{az:['Proqramın qəbul şərtləri','Dil testi (IELTS, TOEFL və ya ölkənin dili)','Diplom və transkript','Motivasiya məktubu'],en:['The programme’s admission requirements','Language test (IELTS, TOEFL or the country’s language)','Diploma and transcripts','Motivation letter']},
+doc:{az:['Pasport','Diplom və transkript','Dil sertifikatı','Tövsiyə məktubları','Təqaüd müraciət formaları'],en:['Passport','Diploma and transcripts','Language certificate','Recommendation letters','Scholarship application forms']},
+stp:{az:['Proqram və təqaüdləri araşdır','Son tarixləri təqvimə yaz','Sənədləri hazırla','Müraciət et','Qəbuldan sonra viza və yaşayış məsələlərini həll et'],en:['Research programmes and scholarships','Note deadlines in a calendar','Prepare documents','Apply','After admission, arrange visa and housing']},
+q:{az:['Bu proqramı niyə seçmisən?','Proqramın məzmunu ilə məqsədini əlaqələndir: nə öyrənmək istədiyini, bunu necə tətbiq edəcəyini və Azərbaycana və ya cəmiyyətə necə fayda verəcəyini izah et.'],en:['Why did you choose this programme?','Connect its content to your goal: what you want to learn, how you will apply it, and how it benefits others.']}},
+tourism:{
+req:{az:['Pasportun etibarlılıq müddəti','Viza tələbinin yoxlanması','Səyahət sığortası','Büdcə planı'],en:['Passport validity','Check visa requirements','Travel insurance','A budget plan']},
+doc:{az:['Pasport','Viza (lazım olarsa)','Otel və bilet bronları','Sığorta'],en:['Passport','Visa if needed','Hotel and ticket bookings','Insurance']},
+stp:{az:['Növ seç: şəhər, təbiət və ya dəniz','Büdcə və günləri müəyyən et','Marşrutu və tur təkliflərini müqayisə et','Rəsmi viza tələblərini yoxla','Bron et'],en:['Pick a style: city, nature or coast','Set a budget and number of days','Compare routes and tour offers','Check official visa rules','Book']},
+q:null}};
+function L(o){return o[lang]}
+function T(k){return U[lang][k]}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function setLang(l){lang=l;try{localStorage.setItem('apeiron-lang',l)}catch(e){}render()}
+function go(v,f,w){view=v;field=f||'';work=w||'';render();window.scrollTo(0,0)}
+function li(a){return '<ul>'+a.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>'}
+function render(){
+document.documentElement.lang=lang;
+document.title='Apeiron — '+T('tag');
+document.getElementById('l-az').className=lang==='az'?'on':'';document.getElementById('l-en').className=lang==='en'?'on':'';
+var nav=document.getElementById('nav'),ks=['science','art','migration','support','assistant'];
+nav.innerHTML=ks.map(function(k){return '<button class="'+(view===k?'on':'')+'" onclick="go(\''+k+'\')">'+T('nav')[k]+'</button>'}).join('');
+document.getElementById('foot').textContent=T('foot')+' · '+T('aff');
+var h='';
+if(view==='home')h=home();else if(view==='science'||view==='art')h=section(view);else if(view==='work')h=workPage();
+else if(view==='migration')h=migration();else if(view==='support')h=support();else if(view==='assistant')h=assistant();
+document.getElementById('app').innerHTML=h;
+if(view==='assistant')renderChat();
+}
+function home(){return '<div class="eyebrow">ἄπειρον · '+esc(T('tag')).toUpperCase()+'</div><h1>'+esc(T('h'))+'</h1><p class="lead">'+esc(T('hd'))+'</p>'
++'<div class="grid">'+[['science','sciD'],['art','artD'],['migration','migD'],['support','supD']].map(function(p){return '<div class="card"><h3>'+T('nav')[p[0]]+'</h3><p>'+esc(T(p[1]))+'</p><button class="btn o" onclick="go(\''+p[0]+'\')">'+T('explore')+'</button></div>'}).join('')+'</div>'
++'<div class="band"><h2>'+T('nav').assistant+'</h2><p>'+esc(T('asP'))+'</p><p><button class="btn" onclick="go(\'assistant\')">'+T('explore')+'</button></p></div>'}
+function section(s){
+var fs=F[s],h='<h2>'+T('nav')[s]+'</h2><p class="lead">'+esc(T(s==='science'?'sciD':'artD'))+'</p>';
+h+='<div class="chips"><button class="'+(field===''?'on':'')+'" onclick="go(\''+s+'\')">'+T('all')+'</button>'+fs.map(function(f){return '<button class="'+(field===f.id?'on':'')+'" onclick="go(\''+s+'\',\''+f.id+'\')">'+esc(L(f.n))+'</button>'}).join('')+'</div>';
+if(field)h+='<div class="card"><span class="tag">AI</span><p>'+esc(T('vid'))+'</p></div>';
+h+='<div class="grid">'+W.filter(function(w){return w.s===s&&(!field||w.f===field)}).map(function(w){return '<div class="card"><span class="tag">'+esc(L(fs.filter(function(f){return f.id===w.f})[0].n))+'</span><h3>'+esc(L(w.t))+'</h3><p>'+esc(w.a)+' · '+esc(w.y)+'</p><p>'+esc(L(w.tp))+'</p><button class="btn o" onclick="go(\'work\',\''+s+'\',\''+w.id+'\')">'+T('explore')+'</button></div>'}).join('')+'</div>';
+h+='<h2 style="margin-top:36px">'+T('meet')+'</h2><div class="grid">'+M.filter(function(m){return m.s===s}).map(function(m){var n=m.n+(joined[m.id]?1:0),pc=Math.min(100,Math.round(n/m.min*100));return '<div class="card"><h3>'+esc(L(m.t))+'</h3><div class="bar2"><i style="width:'+pc+'%"></i></div><p>'+n+' '+T('of')+' '+m.min+' ('+T('min')+') · '+T('price')+': '+m.p+' AZN</p><button class="btn'+(joined[m.id]?' o':'')+'" onclick="joined[\''+m.id+'\']=!joined[\''+m.id+'\'];render()">'+(joined[m.id]?T('reserved'):T('reserve'))+'</button><p class="note" style="margin-top:10px">'+esc(T('sample'))+'</p></div>'}).join('')+'</div>';
+return h}
+function workPage(){var w=W.filter(function(x){return x.id===work})[0];return '<p><button class="btn o" onclick="go(\''+w.s+'\',\''+w.f+'\')">← '+T('back')+'</button></p><span class="tag">'+T(w.s==='art'?'artist':'by')+': '+esc(w.a)+'</span><h1 style="font-size:clamp(28px,5vw,42px)">'+esc(L(w.t))+'</h1><p class="note">'+esc(w.y)+'</p><div class="card"><h3>'+T('topic')+'</h3><p>'+esc(L(w.tp))+'</p><h3>'+T('story')+'</h3><p>'+esc(L(w.st))+'</p></div><div class="warn">'+esc(T('tr'))+'</div><p><a class="btn" target="_blank" rel="sponsored noopener" href="https://openlibrary.org/search?q='+encodeURIComponent(w.q)+'">'+T('buy')+'</a></p><p class="note">'+esc(T('aff'))+'</p>'}
+function migration(){
+var c=C.filter(function(x){return x.id===country})[0],p=P[purpose];
+var h='<h2>'+T('nav').migration+'</h2><p class="lead">'+esc(T('migD'))+'</p><div class="row"><div><label for="cs">'+T('country')+'</label><select id="cs" onchange="country=this.value;render()">'+C.map(function(x){return '<option value="'+x.id+'"'+(x.id===country?' selected':'')+'>'+esc(L(x.n))+'</option>'}).join('')+'</select></div>'
++'<div><label for="ps">'+T('purp')+'</label><select id="ps" onchange="purpose=this.value;render()">'+[['work','work_'],['study','study'],['tourism','tour']].map(function(x){return '<option value="'+x[0]+'"'+(x[0]===purpose?' selected':'')+'>'+T(x[1])+'</option>'}).join('')+'</select></div></div>';
+h+='<div class="card" style="margin-top:20px"><h3>'+esc(L(c.n))+'</h3><p>'+esc(L(c.cu))+'</p><a class="btn o" target="_blank" rel="noopener" href="https://earth.google.com/web/search/'+encodeURIComponent(c.earth)+'">'+T('earth')+'</a> <a class="btn o" target="_blank" rel="noopener" href="https://www.google.com/maps/search/'+encodeURIComponent(c.earth)+'">'+T('maps')+'</a></div>';
+h+='<div class="grid"><div class="card"><h3>'+T('req')+'</h3>'+li(L(p.req))+'</div><div class="card"><h3>'+T('docs')+'</h3>'+li(L(p.doc))+'</div><div class="card"><h3>'+T('steps')+'</h3><ol style="padding-left:20px;margin:6px 0">'+L(p.stp).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol></div></div>';
+if(p.q){var q=L(p.q);h+='<div class="card"><h3>'+T('iv')+'</h3><p><b>'+esc(q[0])+'</b></p><p>'+esc(q[1])+'</p></div>'}
+var link=purpose==='work'?c.w:purpose==='study'?c.s:'https://www.google.com/travel/explore';
+h+='<p style="margin-top:20px"><a class="btn" target="_blank" rel="'+(purpose==='tourism'?'sponsored ':'')+'noopener" href="'+link+'">'+(purpose==='tourism'?T('explore'):T('off'))+'</a></p><p class="note">'+esc(T('verify'))+(purpose==='tourism'?' '+esc(T('aff')):'')+'</p>';
+return h}
+function support(){
+var h='<h2>'+T('supH')+'</h2><p class="lead">'+esc(T('supP'))+'</p><div class="warn">'+esc(T('safe'))+'</div>';
+h+='<div class="card"><div class="row"><div><label for="sa">'+T('age')+'</label><input id="sa" type="number" min="10" max="100"></div><div><label for="se">'+T('edu')+'</label><select id="se">'+T('edus').map(function(x){return '<option>'+esc(x)+'</option>'}).join('')+'</select></div></div><label for="sf">'+T('feel')+'</label><select id="sf">'+T('feels').map(function(x,i){return '<option value="'+i+'">'+esc(x)+'</option>'}).join('')+'</select><label for="sg">'+T('goal')+'</label><input id="sg" type="text"><p style="margin-top:16px"><button class="btn" onclick="makePlan()">'+T('make')+'</button></p></div>';
+if(plan){h+='<h2 style="margin-top:32px">'+T('planT')+'</h2><div class="grid">'+(plan.f==='0'?'<div class="card"><span class="tag">1</span><h3>'+T('psy')+'</h3><p>'+esc(T('psyT'))+'</p><button class="btn o" onclick="go(\'assistant\')">'+T('explore')+'</button></div>':'')+'<div class="card"><h3>'+T('learn')+(plan.g?': '+esc(plan.g):'')+'</h3><p>'+esc(T('learnT'))+'</p></div><div class="card"><h3>'+T('fam')+'</h3><p>'+esc(T('famT'))+'</p></div><div class="card"><h3>'+T('car')+'</h3><p>'+esc(T('carT'))+'</p></div></div>'}
+h+='<div class="band"><h2>'+T('co')+'</h2><p>'+esc(T('coT'))+'</p></div>';
+return h}
+function makePlan(){plan={f:document.getElementById('sf').value,g:document.getElementById('sg').value.trim().slice(0,80)};render()}
+function assistant(){
+return '<h2>'+T('asH')+'</h2><p class="lead">'+esc(T('asP'))+'</p><div class="chips">'+T('sug').map(function(s,i){return '<button onclick="ask(U[lang].sug['+i+'])">'+esc(s)+'</button>'}).join('')+'</div><div class="chat" id="chat" aria-live="polite"></div><div style="display:flex;gap:10px"><textarea id="q" rows="2" placeholder="'+esc(T('ph'))+'" onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();ask()}"></textarea><button class="btn" onclick="ask()">'+T('send')+'</button></div><p class="note">'+esc(T('aiNote'))+'</p>'}
+function renderChat(){var c=document.getElementById('chat');if(!c)return;c.innerHTML='';chatLog.forEach(function(m){var d=document.createElement('div');d.className='m '+(m.role==='user'?'u':'a');d.textContent=m.content;c.appendChild(d)});c.scrollTop=c.scrollHeight}
+async function ask(txt){
+var el=document.getElementById('q'),text=(txt||(el&&el.value)||'').trim();if(!text||busy)return;if(el)el.value='';
+if(!sampleFn){try{var s=await claude.use('sample');if(s)sampleFn=s}catch(e){}}
+chatLog.push({role:'user',content:text});
+if(!sampleFn){chatLog.push({role:'assistant',content:T('nai')});renderChat();return}
+var a={role:'assistant',content:'…'};chatLog.push(a);renderChat();busy=true;
+var sys='You are the assistant of Apeiron, a platform for science, art, migration and personal support. Reply only in '+(lang==='az'?'Azerbaijani':'English')+'. Be clear, honest about uncertainty and concise. You are not a lawyer, doctor or therapist; for migration say to verify on official sources; if the user mentions self-harm, suicide or abuse, respond with calm support and encourage contacting local emergency services or a crisis line and someone they trust.\n\n';
+var msgs=chatLog.slice(0,-1).filter(function(m){return m.content!==T('err')&&m.content!==T('nai')}).slice(-10).map(function(m){return{role:m.role,content:m.content}});
+while(msgs.length&&msgs[0].role!=='user')msgs.shift();
+msgs[0].content=sys+msgs[0].content;
+try{await sampleFn(msgs,{cache:false,onText:function(x){a.content=x.text;renderChat()}})}catch(e){a.content=T('err');renderChat()}
+busy=false}
+render();
+</script>
+</body>
+</html>
